@@ -2,6 +2,19 @@
 
 <h1>Leagues</h1>
 
+<%= form_tag leagues_path, method: :get do %>
+  <p>Search Leagues</p>
+  <p>Latitude</p>
+  <%= text_field_tag :lat, params[:lat], id: "lat" %>
+  <p>Longitude</p>
+  <%= text_field_tag :long, params[:long], id: "long" %>
+  <p>Search Radius</p>
+  <%= number_field_tag :radius, params[:radius] %>
+  <p>Budget</p>
+  <%= number_field_tag :budget, params[:budget] %>
+  <%= submit_tag "Search", name: nil %>
+<% end %>
+
 <table>
   <thead>
     <tr>
@@ -31,3 +44,32 @@
 <br>
 
 <%= link_to 'New League', new_league_path %>
+
+<script>
+  function initGeolocation()
+  {
+    if( navigator.geolocation )
+    {
+        // Call getCurrentPosition with success and failure callbacks
+        navigator.geolocation.getCurrentPosition( success, fail );
+    }
+    else
+    {
+        alert("Sorry, your browser does not support geolocation services.");
+    }
+  }
+
+  function success(position)
+  {
+
+      document.getElementById('long').value = position.coords.longitude;
+      document.getElementById('lat').value = position.coords.latitude
+  }
+
+  function fail()
+  {
+    // Could not obtain location
+  }
+
+  initGeolocation()
+</script>
