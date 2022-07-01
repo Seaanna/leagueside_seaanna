@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @league.name %>
+</p>
+
+<p>
+  <strong>Latitude:</strong>
+  <%= @league.latitude %>
+</p>
+
+<p>
+  <strong>Longitude:</strong>
+  <%= @league.longitude %>
+</p>
+
+<p>
+  <strong>Price:</strong>
+  <%= @league.price %>
+</p>
+
+<%= link_to 'Edit', edit_league_path(@league) %> |
+<%= link_to 'Back', leagues_path %>
