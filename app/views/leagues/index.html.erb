@@ -1,49 +1,58 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Leagues</h1>
+<h1>Search for Leagues</h1>
+<div class="form-center">
+  <%= form_tag leagues_path, method: :get do %>
+    <p>Fields marked with an <span class="form-required-symbol">*</span> are required</p>
+    <div class="form-grid">
+      <div>
+        <p>Latitude <span class="form-required-symbol">*</span></p>
+        <%= text_field_tag :lat, params[:lat], id: "lat", class: "form-input", required: true %>
+      </div>
+      <div>
+        <p>Longitude <span class="form-required-symbol">*</span></p>
+        <%= text_field_tag :long, params[:long], id: "long", class: "form-input", required: true %>
+      </div>
+      <div>
+        <p>Search Radius <span class="form-required-symbol">*</span></p>
+        <%= number_field_tag :radius, params[:radius], class: "form-input", required: true %>
+      </div>
+      <div>
+        <p>Budget <span class="form-required-symbol">*</span></p>
+        <%= number_field_tag :budget, params[:budget], class: "form-input", required: true %>
+      </div>
+    </div>
+    <%= submit_tag "Search", name: nil, class: "form-submit-button" %>
+  <% end %>
+</div>
 
-<%= form_tag leagues_path, method: :get do %>
-  <p>Search Leagues</p>
-  <p>Latitude</p>
-  <%= text_field_tag :lat, params[:lat], id: "lat" %>
-  <p>Longitude</p>
-  <%= text_field_tag :long, params[:long], id: "long" %>
-  <p>Search Radius</p>
-  <%= number_field_tag :radius, params[:radius] %>
-  <p>Budget</p>
-  <%= number_field_tag :budget, params[:budget] %>
-  <%= submit_tag "Search", name: nil %>
-<% end %>
-
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Latitude</th>
-      <th>Longitude</th>
-      <th>Price</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @leagues.each do |league| %>
+<h1>Leagues Available</h1>
+<div class ="table-center">
+  <table class="table-leagues">
+    <thead>
       <tr>
-        <td><%= league.name %></td>
-        <td><%= league.latitude %></td>
-        <td><%= league.longitude %></td>
-        <td><%= league.price %></td>
-        <td><%= link_to 'Show', league %></td>
-        <td><%= link_to 'Edit', edit_league_path(league) %></td>
-        <td><%= link_to 'Destroy', league, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <th>Name</th>
+        <th>Latitude</th>
+        <th>Longitude</th>
+        <th>Price</th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
 
+    <tbody>
+      <% @leagues.each do |league| %>
+        <tr>
+          <td><%= league.name %></td>
+          <td><%= league.latitude %></td>
+          <td><%= league.longitude %></td>
+          <td><%= league.price %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
 <br>
-
-<%= link_to 'New League', new_league_path %>
+<h2>New? Join the League Network</h2>
+<%= link_to 'Add a New League', new_league_path, class: "league-button" %>
 
 <script>
   function initGeolocation()

@@ -1,7 +1,7 @@
 <%= form_with(model: league, local: true) do |form| %>
   <% if league.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(league.errors.count, "error") %> prohibited this league from being saved:</h2>
+      <h2><%= pluralize(league.errors.count, "error") %> prevented this league from being saved:</h2>
 
       <ul>
       <% league.errors.full_messages.each do |message| %>
@@ -11,27 +11,28 @@
     </div>
   <% end %>
 
+  <p>Fields marked with an <span class="form-required-symbol">*</span> are required</p>
   <div class="field">
-    <%= form.label :name %>
-    <%= form.text_field :name, id: :league_name %>
+    <p>Name <span class="form-required-symbol">*</span></p>
+    <%= form.text_field :name, id: :league_name, class: "form-input" %>
   </div>
 
   <div class="field">
-    <%= form.label :latitude %>
-    <%= form.text_field :latitude, id: :league_latitude %>
+    <p>Latitude <span class="form-required-symbol">*</span></p>
+    <%= form.text_field :latitude, id: :league_latitude, class: "form-input" %>
   </div>
 
   <div class="field">
-    <%= form.label :longitude %>
-    <%= form.text_field :longitude, id: :league_longitude %>
+    <p>Longitude <span class="form-required-symbol">*</span></p>
+    <%= form.text_field :longitude, id: :league_longitude, class: "form-input" %>
   </div>
 
   <div class="field">
-    <%= form.label :price %>
-    <%= form.text_field :price, id: :league_price %>
+    <p>Price <span class="form-required-symbol">*</span></p>
+    <%= form.text_field :price, id: :league_price, class: "form-input" %>
   </div>
 
   <div class="actions">
-    <%= form.submit %>
+    <%= form.submit class: "form-submit-button" %>
   </div>
 <% end %>
