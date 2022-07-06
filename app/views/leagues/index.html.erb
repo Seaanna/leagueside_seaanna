@@ -51,34 +51,7 @@
   </table>
 </div>
 <br>
-<h2>New? Join the League Network</h2>
-<%= link_to 'Add a New League', new_league_path, class: "league-button" %>
-
-<script>
-  function initGeolocation()
-  {
-    if( navigator.geolocation )
-    {
-        // Call getCurrentPosition with success and failure callbacks
-        navigator.geolocation.getCurrentPosition( success, fail );
-    }
-    else
-    {
-        alert("Sorry, your browser does not support geolocation services.");
-    }
-  }
-
-  function success(position)
-  {
-
-      document.getElementById('long').value = position.coords.longitude;
-      document.getElementById('lat').value = position.coords.latitude
-  }
-
-  function fail()
-  {
-    // Could not obtain location
-  }
-
-  initGeolocation()
-</script>
+<div class="league-new">
+  <h2>New? Join the League Network</h2>
+  <%= link_to 'Add a New League', new_league_path, class: "league-button" %>
+</div>
