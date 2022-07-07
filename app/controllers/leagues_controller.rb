@@ -12,7 +12,7 @@ class LeaguesController < ApplicationController
     # query to filter by price
     # calculate lat and long to be within radius
     if lat && long && radius && budget
-      @leagues = League.where('price <= ?', budget).near([lat, long], radius)
+      @leagues = League.search(budget, lat, long, radius)
     else
       @leagues = League.all
     end
